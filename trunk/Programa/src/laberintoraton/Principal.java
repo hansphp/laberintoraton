@@ -2,12 +2,9 @@ package laberintoraton;
 
 public class Principal {
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	public static void main(String s[]) {
+		Tablero tablero = new Tablero(15, 15, 32);
+		System.out.println("Creando tablero");
+		new FrmTablero(tablero);
 	}
-
 }
