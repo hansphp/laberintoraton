@@ -1,9 +1,0 @@
-!SESSION 2012-11-16 00:44:57.431 -----------------------------------------------
-eclipse.buildId=I20120608-1400
-java.version=1.7.0_09
-java.vendor=Oracle Corporation
-BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=es_MX
-Command-line arguments:  -os win32 -ws win32 -arch x86 -data C:\Users\Hans Von\Desktop\googlecode\laberintoraton
-
-!ENTRY org.eclipse.ui 2 2 2012-11-16 00:46:43.821
-!MESSAGE Invalid property category path: ValidationPropertiesPage (bundle: org.eclipse.wst.xml.ui, propertyPage: org.eclipse.wst.xml.ui.propertyPage.project.validation)
