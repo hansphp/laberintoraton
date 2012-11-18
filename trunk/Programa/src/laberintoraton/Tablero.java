@@ -6,9 +6,6 @@ import java.awt.Color;
  * 
  * Tablero lógico, modela el tablero como una matriz de caracteres.
  * <p>
- * El método jugada permite solicitar una jugada para el jugador que tiene el
- * turno, este mismo método es el que invoca el PnlTablero cuando recibe un
- * click del ratón sobre el área destinada al tablero.
  */
 public class Tablero {
 
@@ -17,20 +14,41 @@ public class Tablero {
 	static char colores[] = { 'K' };
 
 	int turno;
-
+	
 	/**
-	 * longitud del cada cuadro en el tablero
+	 * longitud de cada cuadro en el tablero
 	 */
 	int largo;
 	/**
 	 * número total de renglones y columnas del tablero
 	 */
-	int ren, col;
+	int fila, col;
 	/**
 	 * almacena qué color tiene cada casilla:<br>
 	 * La casilla vacía es blanca
 	 */
 	char espacio[][];
+
+	/**
+	 * crea la matriz que representa el tablero, la rellena con las letras que
+	 * le corresponden a cada color de casilla y a cada jugador
+	 * 
+	 * @param filas
+	 *            Número total de filas del tablero.
+	 * @param columnas
+	 *            Número total de columnas del tablero.
+	 */
+	Tablero(int filas, int columnas) {
+		fila = filas;
+		col = columnas;
+		largo = 32;
+
+		espacio = new char[fila][col];
+		for (int r = 0; r < fila; r++)
+			for (int c = 0; c < col; c++)
+				espacio[r][c] = 'B'; // fija casillas de color blanco
+		System.out.println("Creando tablero");
+	}
 
 	/**
 	 * el jugador en turno solicita que la casilla (r,c) sea tomada por él, si
@@ -79,35 +97,9 @@ public class Tablero {
 	 * @param c
 	 *            columna de la casilla
 	 */
-	void movimiento(int r, int c) {
-		espacio[r][c] = colores[0];
+	void movimiento(int f, int c) {
+		espacio[f][c] = colores[0];
 	}
-
-	/**
-	 * crea la matriz que representa el tablero, la rellena con las letras que
-	 * le corresponden a cada color de casilla y a cada jugador
-	 * 
-	 * @param renglones
-	 *            Número total de renglones del tablero
-	 * @param columnas
-	 *            Número total de columnas del tablero
-	 * @param tamaño
-	 *            Longitud en pixels de cada casilla del tablero
-	 * @param jugadore
-	 *            Número de jugadores que participarán en el juego
-	 */
-	Tablero(int renglones, int columnas, int tamaño) {
-		ren = renglones;
-		col = columnas;
-		largo = tamaño;
-
-		espacio = new char[ren][col];
-		for (int r = 0; r < ren; r++)
-			for (int c = 0; c < col; c++)
-				espacio[r][c] = 'B'; // fija casillas de color blanco
-
-	}
-
 	/**
 	 * Regresa el color de una casilla del tablero
 	 * 
@@ -117,8 +109,8 @@ public class Tablero {
 	 *            columna dentro del tablero
 	 * @return color correspondiente a la posición (r,c)
 	 */
-	Color color(int r, int c) {
-		return color(espacio[r][c]);
+	Color color(int f, int c) {
+		return color(espacio[f][c]);
 	}
 
 	/**
