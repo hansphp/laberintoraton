@@ -2,8 +2,6 @@ package laberintoraton;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 
@@ -19,18 +17,16 @@ class PanelTablero extends JPanel {
 
 	Tablero t;
 	
-	
-	Image 	raton 	= Toolkit.getDefaultToolkit().getImage("raton.png"),
-			salida	= Toolkit.getDefaultToolkit().getImage("salida.png"),
-			pared 	= Toolkit.getDefaultToolkit().getImage("pared.png"),
-			goma 	= Toolkit.getDefaultToolkit().getImage("goma.png");
-	int gX;
+	Sprite goma, raton, salida, pared;
 	
 
 	public PanelTablero(Tablero t) {
 		this.t = t;
-		gX = (t.col*t.largo)+20;
 		initComponents();
+		pared = new Sprite("pared",this);
+		salida = new Sprite("salida");
+		goma = new Sprite("goma");
+		raton = new Sprite("raton");
 	}
 
 	private void initComponents() {
@@ -57,19 +53,24 @@ class PanelTablero extends JPanel {
 					/*
 					 * Delimita las columnas.
 					 */
-					if(gX < x && x < (gX+32)){
+					if(Sprite.gX < x && x < (Sprite.gX+100)){
 						if(10 < y && y < (10+32)){
+							Sprite.actual="pared".toUpperCase();
 							System.out.println("Click en pared");
 						}
 						if(48 < y && y < (48+32)){
+							Sprite.actual="raton".toUpperCase();
 							System.out.println("Click en raton");
 						}
 						if(86 < y && y < (86+32)){
+							Sprite.actual="salida".toUpperCase();
 							System.out.println("Click en salida");
 						}
 						if(124 < y && y < (124+32)){
+							Sprite.actual="goma".toUpperCase();
 							System.out.println("Click en goma");
 						}
+						t.repaint();
 					}
 				}
 			}
@@ -133,7 +134,7 @@ class PanelTablero extends JPanel {
 				
 				
 				if(t.casilla(f,c)=='P'){
-					g.drawImage(pared, x + 1, y + 1, 32, 32, this);
+					pared.dibujar(g,x + 1,y + 1);
 				}else{
 					g.setColor(Color.WHITE);
 					g.fillRect(x + 1, y + 1, t.largo -2 , t.largo -2 );
@@ -144,23 +145,14 @@ class PanelTablero extends JPanel {
 			y += t.largo;
 		}
 		
+		pared.dibujar(g, 10);
+		raton.dibujar(g, 48);
+		salida.dibujar(g, 86);
+		goma.dibujar(g, 124);
+		
+		g.setColor(Color.LIGHT_GRAY);
+		g.fillRect(Sprite.gX, 170, 84, 20);
 		g.setColor(Color.BLACK);
-		//g.fillRect(20, (t.fila + 1) * t.largo + 15, 80, 20);
-		
-		g.drawImage(pared, gX, 10, t.largo, t.largo, this);
-		g.drawString("Ladrillo",  (t.col*t.largo)+60, 30);
-		
-		g.drawImage(raton, gX, 48, t.largo, t.largo, this);
-		g.drawString("Ratón",  (t.col*t.largo)+60, 68);
-		
-		g.drawImage(salida, gX, 86, t.largo, t.largo, this);
-		g.drawString("Salida",  (t.col*t.largo)+60, 106);
-		
-		g.drawImage(goma, gX, 124, t.largo, t.largo, this);
-		g.drawString("Goma",  (t.col*t.largo)+60, 144);
-	/*
-		g.drawImage(raton, 10, 10, 32, 32, this);
-		g.drawImage(salida, 42 + (13 * 32), 42 + (13 * 32), 32, 32, this);
-*/
+		g.drawString(Sprite.actual,  Sprite.gX+20, 185);
 	}
 }

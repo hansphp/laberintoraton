@@ -57,7 +57,7 @@ public class Tablero {
 	 * las coordenadas son incorrectas o porque la casilla solicitada rompe las
 	 * reglas del juego se ignora la solicitud y no cambia el turno del jugador
 	 * 
-	 * @param r
+	 * @param f
 	 *            renglón de la casilla
 	 * @param c
 	 *            columna de la casilla
@@ -65,16 +65,19 @@ public class Tablero {
 	 *         turno. Falso indica que no se ejecuto la jugada y que el turno
 	 *         sigue perteneciendo al jugador que solicitó la jugada
 	 */
-	boolean jugada(int r, int c) {
+	boolean jugada(int f, int c) {
 		System.out.println("===================================");
 
 		System.out.printf("dibujando: %d\n",5454);
 
-		movimiento(r, c);
+		movimiento(f, c);
 
-		dibujo.repaint();
+		repaint();
 
 		return true;
+	}
+	void repaint(){
+		dibujo.repaint();
 	}
 	/**
 	 * Efectúa el movimiento solicitado en el tablero
