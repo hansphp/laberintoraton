@@ -1,6 +1,5 @@
 package laberintoraton;
 
-import java.awt.Color;
 
 /**
  * 
@@ -11,7 +10,7 @@ public class Tablero {
 
 	PanelTablero dibujo;
 
-	static char colores[] = { 'K' };
+	static char rellenos[] = { 'K', 'P', 'R', 'S' };
 
 	int turno;
 	
@@ -24,10 +23,10 @@ public class Tablero {
 	 */
 	int fila, col;
 	/**
-	 * almacena qué color tiene cada casilla:<br>
-	 * La casilla vacía es blanca
+	 * almacena qué valor tiene cada casilla:<br>
+	 * La casilla vacía o 'B' es blanca.
 	 */
-	char espacio[][];
+	public char espacio[][];
 
 	/**
 	 * crea la matriz que representa el tablero, la rellena con las letras que
@@ -69,7 +68,7 @@ public class Tablero {
 	boolean jugada(int r, int c) {
 		System.out.println("===================================");
 
-		System.out.printf("dibujando: %d\n", 0);
+		System.out.printf("dibujando: %d\n",5454);
 
 		movimiento(r, c);
 
@@ -77,18 +76,6 @@ public class Tablero {
 
 		return true;
 	}
-
-	/**
-	 * Valida la jugada, determinando si lo que desea hacer el jugador en turno
-	 * es valido
-	 * 
-	 * @param r
-	 *            renglón de la casilla a tomar
-	 * @param c
-	 *            columna de la casilla a tomar
-	 * @return true jugada valida, false jugada no valida
-	 */
-
 	/**
 	 * Efectúa el movimiento solicitado en el tablero
 	 * 
@@ -98,51 +85,13 @@ public class Tablero {
 	 *            columna de la casilla
 	 */
 	void movimiento(int f, int c) {
-		espacio[f][c] = colores[0];
+		espacio[f][c] = rellenos[1];
+	}
+	char casilla(int f, int c){
+		return 	espacio[f][c];
 	}
 	/**
-	 * Regresa el color de una casilla del tablero
-	 * 
-	 * @param r
-	 *            renglón dentro del tablero
-	 * @param c
-	 *            columna dentro del tablero
-	 * @return color correspondiente a la posición (r,c)
-	 */
-	Color color(int f, int c) {
-		return color(espacio[f][c]);
-	}
-
-	/**
-	 * Entrega el código de Color correspondiente a una letra
-	 * 
-	 * @param c
-	 *            letra del color deseado:<br>
-	 *            'R' = Rojo, 'A' = Azul, 'N' = Negro,<br>
-	 *            'V' = Verde, 'B' Blanco
-	 * @return código del color
-	 * @see java.awt.Color
-	 */
-	Color color(char c) {
-		switch (c) {
-		case 'K':
-			return Color.BLACK;
-
-		}
-		return Color.WHITE; // por default el color es blanco
-	}
-
-	/**
-	 * Color del jugador que tiene el turno
-	 * 
-	 * @return color
-	 */
-	Color colorTurno() {
-		return color(colores[0]);
-	}
-
-	/**
-	 * Crea un JPanel donde se dibujará el tablero de juego. Se asocia el
+	 * Crea un JPanel donde se dibujará el tablero. Se asocia el
 	 * PnlTablero con este objeto, de manera que cada movimiento efectuado por
 	 * medio de jugada(r,c) se vea reflejado gráficamente en el tablero de juego
 	 * 
