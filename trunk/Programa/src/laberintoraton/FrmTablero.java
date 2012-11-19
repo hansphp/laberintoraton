@@ -13,7 +13,7 @@ class FrmTablero extends JFrame {
 	public FrmTablero(Tablero t) {
 		tablero = t;
 		
-		setSize(200,200);
+		setSize((t.col*t.largo)+36,(t.fila*t.largo)+58);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		PanelTablero dibujo = tablero.preaparaTablero();
 		add(dibujo);
