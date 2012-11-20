@@ -10,7 +10,7 @@ public class Tablero {
 
 	PanelTablero dibujo;
 
-	static char rellenos[] = { 'K', 'P', 'R', 'S' };
+	static char rellenos[] = { 'B', 'P', 'R', 'S' };
 
 	int turno;
 	
@@ -28,6 +28,8 @@ public class Tablero {
 	 */
 	public char espacio[][];
 
+	char actual;
+	
 	/**
 	 * crea la matriz que representa el tablero, la rellena con las letras que
 	 * le corresponden a cada color de casilla y a cada jugador
@@ -41,6 +43,7 @@ public class Tablero {
 		fila = filas;
 		col = columnas;
 		largo = 32;
+		actual = 'P';
 
 		espacio = new char[fila][col];
 		for (int r = 0; r < fila; r++)
@@ -65,31 +68,34 @@ public class Tablero {
 	 *         turno. Falso indica que no se ejecuto la jugada y que el turno
 	 *         sigue perteneciendo al jugador que solicitó la jugada
 	 */
-	boolean jugada(int f, int c) {
-		System.out.println("===================================");
-
-		System.out.printf("dibujando: %d\n",5454);
-
-		movimiento(f, c);
-
-		repaint();
-
-		return true;
-	}
 	void repaint(){
 		dibujo.repaint();
 	}
 	/**
 	 * Efectúa el movimiento solicitado en el tablero
 	 * 
-	 * @param r
-	 *            renglón de la casilla
+	 * @param f
+	 *            fila de la casilla
 	 * @param c
 	 *            columna de la casilla
 	 */
-	void movimiento(int f, int c) {
-		espacio[f][c] = rellenos[1];
+	boolean movimiento(int f, int c) {
+		System.out.println("===================================");
+		System.out.printf("dibujando: %c\n", this.actual);
+		espacio[f][c] = this.actual;
+		
+		
+		for(char es[]:espacio){
+			for(char e:es){
+			System.out.print(" "+e);
+			}
+			System.out.println("");
+		}
+			
+		repaint();
+		return true;
 	}
+	
 	char casilla(int f, int c){
 		return 	espacio[f][c];
 	}
