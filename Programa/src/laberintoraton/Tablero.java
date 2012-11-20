@@ -3,14 +3,15 @@ package laberintoraton;
 
 /**
  * 
- * Tablero lógico, modela el tablero como una matriz de caracteres.
+ * Tablero logico, modela el tablero como una matriz de caracteres.
  * <p>
  */
 public class Tablero {
 
 	PanelTablero dibujo;
 
-	static char rellenos[] = { 'B', 'P', 'R', 'S' };
+	char rellenos[] = { 'B', 'P', 'R', 'S' };
+	int [] posRaton = {0 , 0};
 
 	int turno;
 	
