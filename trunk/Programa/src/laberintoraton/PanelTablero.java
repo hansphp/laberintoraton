@@ -23,7 +23,7 @@ class PanelTablero extends JPanel {
 	public PanelTablero(Tablero t) {
 		this.t = t;
 		initComponents();
-		pared = new Sprite("pared",this);
+		pared = new Sprite("pared",this); // El primer elemento pasa el this.
 		salida = new Sprite("salida");
 		goma = new Sprite("goma");
 		raton = new Sprite("raton");
@@ -39,36 +39,34 @@ class PanelTablero extends JPanel {
 			// y envia la posicion como una jugada a el tablero que se tiene
 			// asociado
 			//
-			public void mouseClicked(MouseEvent evt) {
-				int x = evt.getX();
-				int y = evt.getY();
-				double dc = (x - 10) / (t.largo);
-				double df = (y - 10) / (t.largo);
-				int c = (int) Math.floor(dc);
-				int f = (int) Math.floor(df);
-				if ((f >= 0 && f < t.fila) && (c >= 0 && c < t.col)) {
-					System.out.printf("(%d,%d) -->  [%2d,%2d]\n", x, y, f, c);
-					t.jugada(f, c);
+			public void mouseClicked(MouseEvent e) {
+				int coor[] = coordenadas(e);
+				int x = e.getX();
+				int y = e.getY();
+				
+				if ((coor[0] >= 0 && coor[0] < t.fila) && (coor[1] >= 0 && coor[1] < t.col)) {
+					System.out.printf("[%2d,%2d]\n", x, y, coor[0], coor[1]);
+					t.movimiento(coor[0], coor[1]);
 				}else{
 					/*
-					 * Delimita las columnas.
+					 * Delimita las columnas para el panel de seleción.
 					 */
 					if(Sprite.gX < x && x < (Sprite.gX+100)){
 						if(10 < y && y < (10+32)){
-							Sprite.actual="pared".toUpperCase();
-							System.out.println("Click en pared");
+							Sprite.actual="pared";
+							t.actual = 'P'; 
 						}
 						if(48 < y && y < (48+32)){
-							Sprite.actual="raton".toUpperCase();
-							System.out.println("Click en raton");
+							Sprite.actual="raton";
+							t.actual = 'R'; 
 						}
 						if(86 < y && y < (86+32)){
-							Sprite.actual="salida".toUpperCase();
-							System.out.println("Click en salida");
+							Sprite.actual="salida";
+							t.actual = 'S'; 
 						}
 						if(124 < y && y < (124+32)){
-							Sprite.actual="goma".toUpperCase();
-							System.out.println("Click en goma");
+							Sprite.actual="goma";
+							t.actual = 'B'; 
 						}
 						t.repaint();
 					}
@@ -107,13 +105,16 @@ class PanelTablero extends JPanel {
 		this.addMouseMotionListener(new java.awt.event.MouseMotionListener(){
 
 			@Override
-			public void mouseDragged(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				//System.out.println("fff");
+			public void mouseDragged(MouseEvent e) {
+				int coor[] = coordenadas(e);
+				if ((coor[0] >= 0 && coor[0] < t.fila) && (coor[1] >= 0 && coor[1] < t.col)) {
+					System.out.printf("coor[%2d,%2d]\n", coor[0], coor[1]);
+					t.movimiento(coor[0], coor[1]);
+				}
 			}
 
 			@Override
-			public void mouseMoved(MouseEvent arg0) {
+			public void mouseMoved(MouseEvent e) {
 				// TODO Auto-generated method stub
 				//System.out.println("eee");
 			}
@@ -121,6 +122,16 @@ class PanelTablero extends JPanel {
 		});
 		
 	}
+	
+	public int[] coordenadas(MouseEvent e){
+		int coor[] = new int[2];
+		double dc = (e.getX() - 10) / (t.largo);
+		double df = (e.getY() - 10) / (t.largo);
+		coor[1] = (int) Math.floor(dc);
+		coor[0] = (int) Math.floor(df);
+		return coor;
+	}
+	
 
 	@Override
 	public void paint(Graphics g) {
@@ -131,13 +142,16 @@ class PanelTablero extends JPanel {
 				
 				g.setColor(Color.LIGHT_GRAY);
 				g.drawRect(x, y, t.largo, t.largo);
-				
-				
+	
 				if(t.casilla(f,c)=='P'){
 					pared.dibujar(g,x + 1,y + 1);
+				}else if(t.casilla(f,c)=='R'){
+					raton.dibujar(g, x + 1,y + 1);
+				}else if(t.casilla(f,c)=='S'){
+					salida.dibujar(g, x + 1,y + 1);
 				}else{
 					g.setColor(Color.WHITE);
-					g.fillRect(x + 1, y + 1, t.largo -2 , t.largo -2 );
+					g.fillRect(x + 1, y + 1, t.largo -1 , t.largo -1 );
 				}
 				
 				x += t.largo;
@@ -153,6 +167,6 @@ class PanelTablero extends JPanel {
 		g.setColor(Color.LIGHT_GRAY);
 		g.fillRect(Sprite.gX, 170, 84, 20);
 		g.setColor(Color.BLACK);
-		g.drawString(Sprite.actual,  Sprite.gX+20, 185);
+		g.drawString(Sprite.actual.toUpperCase(),  Sprite.gX+20, 185);
 	}
 }

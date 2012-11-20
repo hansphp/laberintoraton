@@ -10,12 +10,13 @@ public class Sprite {
 	static int gX;
 	static Tablero t;
 	static PanelTablero obj;
-	static String actual="";
+	static String actual;
 	
 	Image pic;
 	String nombre;	
 	
 	Sprite(String n, PanelTablero este){
+		actual="pared";
 		obj = este;
 		t = obj.t;
 		gX =  (t.col*t.largo)+20;
@@ -24,6 +25,7 @@ public class Sprite {
 	Sprite(String n){
 		validadorInicial(n);
 	}
+	
 	
 	private boolean validadorInicial(String n){
 		if("raton"==n || "salida"==n || "pared"==n || "goma"==n){
