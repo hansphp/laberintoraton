@@ -28,6 +28,9 @@ class PanelTablero extends JPanel {
 		goma = new Sprite("goma");
 		raton = new Sprite("raton");
 		reset = new Sprite("reset");
+		
+		
+		
 	}
 
 	private void initComponents() {
@@ -124,7 +127,7 @@ class PanelTablero extends JPanel {
 			}
 			
 		});
-		
+
 	}
 	
 	public int[] coordenadas(MouseEvent e){
