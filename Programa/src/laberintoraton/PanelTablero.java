@@ -17,7 +17,7 @@ class PanelTablero extends JPanel {
 
 	Tablero t;
 	
-	Sprite goma, raton, salida, pared;
+	Sprite goma, raton, salida, pared, reset;
 	
 
 	public PanelTablero(Tablero t) {
@@ -27,6 +27,7 @@ class PanelTablero extends JPanel {
 		salida = new Sprite("salida");
 		goma = new Sprite("goma");
 		raton = new Sprite("raton");
+		reset = new Sprite("reset");
 	}
 
 	private void initComponents() {
@@ -67,6 +68,9 @@ class PanelTablero extends JPanel {
 						if(124 < y && y < (124+32)){
 							Sprite.actual="goma";
 							t.actual = 'B'; 
+						}
+						if(224 < y && y < (224+32)){
+							t.reset();
 						}
 						t.repaint();
 					}
@@ -132,6 +136,7 @@ class PanelTablero extends JPanel {
 		return coor;
 	}
 	
+	
 
 	@Override
 	public void paint(Graphics g) {
@@ -163,6 +168,8 @@ class PanelTablero extends JPanel {
 		raton.dibujar(g, 48);
 		salida.dibujar(g, 86);
 		goma.dibujar(g, 124);
+		
+		reset.dibujar(g, 224);
 		
 		g.setColor(Color.LIGHT_GRAY);
 		g.fillRect(Sprite.gX, 170, 84, 20);

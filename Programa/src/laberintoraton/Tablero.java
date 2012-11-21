@@ -52,23 +52,7 @@ public class Tablero {
 				espacio[r][c] = 'B'; // fija casillas de color blanco
 		System.out.println("Creando tablero");
 	}
-
-	/**
-	 * el jugador en turno solicita que la casilla (r,c) sea tomada por él, si
-	 * está disponible y es una jugada valida (depende de las reglas del juego)
-	 * se efectúa la toma y se establece automáticamente que el turno es del
-	 * jugador siguiente en el orden. Si la jugada es invalida, ya sea porque
-	 * las coordenadas son incorrectas o porque la casilla solicitada rompe las
-	 * reglas del juego se ignora la solicitud y no cambia el turno del jugador
-	 * 
-	 * @param f
-	 *            renglón de la casilla
-	 * @param c
-	 *            columna de la casilla
-	 * @return cierto indica que se pudo ejecutar la jugada y se cambia el
-	 *         turno. Falso indica que no se ejecuto la jugada y que el turno
-	 *         sigue perteneciendo al jugador que solicitó la jugada
-	 */
+	
 	void repaint(){
 		dibujo.repaint();
 	}
@@ -85,7 +69,6 @@ public class Tablero {
 		System.out.printf("dibujando: %c\n", this.actual);
 		espacio[f][c] = this.actual;
 		
-		
 		for(char es[]:espacio){
 			for(char e:es){
 			System.out.print(" "+e);
@@ -100,6 +83,13 @@ public class Tablero {
 	char casilla(int f, int c){
 		return 	espacio[f][c];
 	}
+	
+	void reset(){
+		for (int r = 0; r < fila; r++)
+			for (int c = 0; c < col; c++)
+				espacio[r][c] = 'B'; // fija casillas de color blanco.
+	}
+	
 	/**
 	 * Crea un JPanel donde se dibujará el tablero. Se asocia el
 	 * PnlTablero con este objeto, de manera que cada movimiento efectuado por
