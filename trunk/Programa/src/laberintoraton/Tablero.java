@@ -9,8 +9,11 @@ package laberintoraton;
 public class Tablero {
 
 	PanelTablero dibujo;
+	
+	BrainRaton brain;
 
-	char rellenos[] = { 'B', 'P', 'R', 'S' };
+	char rellenos[] = { 'B', 'P', 'R', 'S', 'E' };
+	
 	int [] posRaton = {0 , 0};
 
 	int turno;
@@ -50,7 +53,7 @@ public class Tablero {
 		for (int r = 0; r < fila; r++)
 			for (int c = 0; c < col; c++)
 				espacio[r][c] = 'B'; // fija casillas de color blanco
-		System.out.println("Creando tablero");
+		System.out.println("Creando tablero desde el Constructor");
 	}
 	
 	void repaint(){
@@ -64,22 +67,27 @@ public class Tablero {
 	 * @param c
 	 *            columna de la casilla
 	 */
-	boolean movimiento(int f, int c) {
+	void pintar(int f, int c) {
 		System.out.println("===================================");
 		System.out.printf("dibujando: %c\n", this.actual);
 		espacio[f][c] = this.actual;
 		
-		for(char es[]:espacio){
+		/* for(char es[]:espacio){
 			for(char e:es){
 			System.out.print(" "+e);
 			}
 			System.out.println("");
-		}
+		}*/
 			
 		repaint();
-		return true;
 	}
 	
+	void pintar(int f, int c, char n) {
+		System.out.println("===================================");
+		System.out.printf("dibujando: %c\n", n);
+		espacio[f][c] = n;
+		repaint();
+	}
 	char casilla(int f, int c){
 		return 	espacio[f][c];
 	}
