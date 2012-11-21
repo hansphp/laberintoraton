@@ -50,7 +50,7 @@ class PanelTablero extends JPanel {
 				
 				if ((coor[0] >= 0 && coor[0] < t.fila) && (coor[1] >= 0 && coor[1] < t.col)) {
 					System.out.printf("[%2d,%2d]\n", x, y, coor[0], coor[1]);
-					t.movimiento(coor[0], coor[1]);
+					t.pintar(coor[0], coor[1]);
 				}else{
 					/*
 					 * Delimita las columnas para el panel de seleción.
@@ -104,8 +104,7 @@ class PanelTablero extends JPanel {
 
 			@Override
 			public void mouseWheelMoved(MouseWheelEvent e) {
-				// TODO Auto-generated method stub
-				System.out.println("WHELL:"+e.getWheelRotation());
+				t.brain.accion(e.getWheelRotation());
 			}
 				
 		});
@@ -116,7 +115,7 @@ class PanelTablero extends JPanel {
 				int coor[] = coordenadas(e);
 				if ((coor[0] >= 0 && coor[0] < t.fila) && (coor[1] >= 0 && coor[1] < t.col)) {
 					System.out.printf("coor[%2d,%2d]\n", coor[0], coor[1]);
-					t.movimiento(coor[0], coor[1]);
+					t.pintar(coor[0], coor[1]);
 				}
 			}
 

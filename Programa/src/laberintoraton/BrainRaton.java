@@ -9,8 +9,29 @@ public class BrainRaton {
 
 	BrainRaton(Tablero t){
 		this.t = t;
+		t.brain = this;
 		
 	}
+	void avance(int f, int c){
+		t.espacio[t.posRaton[0]][t.posRaton[1]] = 'B';
+		t.espacio[f][c] = 'R';
+		t.posRaton[0] = f;
+		t.posRaton[1] = c;
+		t.repaint();
+	}
+	
+	void accion(int v){
+		System.out.println("raton moviendose a "+ (t.posRaton[0]+1)+","+(t.posRaton[1]+1));
+		// TODO 
+		anclaje();
+	}
+	
+	void anclaje(){
+		/// PIENSA EL RATÓN DONDE SE VA A MOVER
+		/// PARA LUEGO HACERLO... método();
+		avance(t.posRaton[0]+1,t.posRaton[1]+1);
+	}
+	
 	public boolean verificaAbajo() { //prioridad 1
 		int f = t.posRaton[0];
 		int c = t.posRaton[1];
@@ -53,27 +74,20 @@ public class BrainRaton {
 	}
 
 	public void avanzaAbajo() {
-
-		 t.posRaton[0]++;
-		 t.repaint();
-
+		avance(t.posRaton[0]+1,t.posRaton[1]);
 	}
 
 	public void avanzaDerecha() {
-
-		t.posRaton[1]++;
-		t.repaint();
+		avance(t.posRaton[0],t.posRaton[1]+1);
 	}
 
 	public void avanzaIzquierda() {
-		t.posRaton[0]--;
-		t.repaint();
+		
+		avance(t.posRaton[0],t.posRaton[1]-1);
 	}
 
 	public void avanzaArriba() {
-		t.posRaton[1]--;
-		t.repaint();
-
+		avance(t.posRaton[0]-1,t.posRaton[1]);
 	}
 
 }
