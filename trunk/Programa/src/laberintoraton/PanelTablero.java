@@ -90,13 +90,10 @@ class PanelTablero extends JPanel {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				//System.out.println("bbb");
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				//System.out.println("ccc");
-				
 			}
 		});
 
@@ -104,7 +101,9 @@ class PanelTablero extends JPanel {
 
 			@Override
 			public void mouseWheelMoved(MouseWheelEvent e) {
-				t.brain.accion(e.getWheelRotation());
+				if(t.puertaEnTablero && t.ratonEnTablero){
+					t.brain.accion(e.getWheelRotation());
+				}
 			}
 				
 		});
