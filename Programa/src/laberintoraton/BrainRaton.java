@@ -29,7 +29,8 @@ public class BrainRaton {
 	void anclaje(){
 		/// PIENSA EL RATÓN DONDE SE VA A MOVER
 		/// PARA LUEGO HACERLO... método();
-		avance(t.posRaton[0]+1,t.posRaton[1]+1);
+		//avance(t.posRaton[0]+1,t.posRaton[1]+1);
+		jugando();
 	}
 	
 	public boolean verificaAbajo() { //prioridad 1
@@ -88,6 +89,26 @@ public class BrainRaton {
 
 	public void avanzaArriba() {
 		avance(t.posRaton[0]-1,t.posRaton[1]);
+	}
+	
+	
+	public void jugando() {
+
+		if (verificaAbajo() == true) {
+			avanzaAbajo();
+			
+			
+		} else if (verificaDerecha() == true) {
+			avanzaDerecha();
+		
+		}else if (verificaArriba() == true){
+			avanzaArriba();
+			
+		}else if (verificaIzquierda() == true){
+			avanzaIzquierda();
+			
+		}
+
 	}
 
 }
