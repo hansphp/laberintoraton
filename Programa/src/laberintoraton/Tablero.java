@@ -14,7 +14,11 @@ public class Tablero {
 
 	char rellenos[] = { 'B', 'P', 'R', 'S', 'E' };
 	
-	int [] posRaton = {0 , 0};
+	int [] posRaton = new int[2];
+	int [] posPuerta = {3,3};
+	
+	boolean ratonEnTablero;
+	boolean puertaEnTablero;
 
 	int turno;
 	
@@ -48,11 +52,15 @@ public class Tablero {
 		col = columnas;
 		largo = 32;
 		actual = 'P';
-
+		ratonEnTablero = false;
+		puertaEnTablero = false;
+		posRaton[0] = 0;
+		posRaton[1] = 0;
+		
 		espacio = new char[fila][col];
-		for (int r = 0; r < fila; r++)
+		for (int f = 0; f < fila; f++)
 			for (int c = 0; c < col; c++)
-				espacio[r][c] = 'B'; // fija casillas de color blanco
+				espacio[f][c] = 'B'; // fija casillas de color blanco
 		System.out.println("Creando tablero desde el Constructor");
 	}
 	
@@ -70,7 +78,35 @@ public class Tablero {
 	void pintar(int f, int c) {
 		System.out.println("===================================");
 		System.out.printf("dibujando: %c\n", this.actual);
-		espacio[f][c] = this.actual;
+		if(this.actual=='R'){
+			if(ratonEnTablero==false && espacio[f][c]=='B'){
+				espacio[f][c] = this.actual;
+				posRaton[0] = f;
+				posRaton[1] = c;
+				ratonEnTablero=true;
+			}else{
+				System.out.println("YA NO DIBUJA RATON");
+			}
+		}else if(this.actual=='S'){
+			if(puertaEnTablero==false && espacio[f][c]=='B'){
+				espacio[f][c] = this.actual;
+				posPuerta[0] = f;
+				posPuerta[1] = c;
+				puertaEnTablero=true;
+			}else{
+				System.out.println("YA NO DIBUJA SALIDA");
+			}	
+		}else{
+			if(posRaton[0] == f &&  c == posRaton[1]){
+				espacio[f][c] = this.actual;
+				ratonEnTablero = false;
+			}else if(posPuerta[0] == f &&  c == posPuerta[1]){
+				espacio[f][c] = this.actual;
+				puertaEnTablero = false;
+			}else
+			espacio[f][c] = this.actual;
+			System.out.println(this.actual);
+		}
 		
 		/* for(char es[]:espacio){
 			for(char e:es){
@@ -93,9 +129,9 @@ public class Tablero {
 	}
 	
 	void reset(){
-		for (int r = 0; r < fila; r++)
+		for (int f = 0; f < fila; f++)
 			for (int c = 0; c < col; c++)
-				espacio[r][c] = 'B'; // fija casillas de color blanco.
+				espacio[f][c] = 'B'; // fija casillas de color blanco.
 	}
 	
 	/**
