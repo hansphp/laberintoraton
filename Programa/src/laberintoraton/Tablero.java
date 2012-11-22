@@ -15,7 +15,7 @@ public class Tablero {
 	char rellenos[] = { 'B', 'P', 'R', 'S', 'E' };
 	
 	int [] posRaton = new int[2];
-	int [] posPuerta = {3,3};
+	int [] posPuerta = new int[2];
 	
 	boolean ratonEnTablero;
 	boolean puertaEnTablero;
@@ -54,8 +54,6 @@ public class Tablero {
 		actual = 'P';
 		ratonEnTablero = false;
 		puertaEnTablero = false;
-		posRaton[0] = 0;
-		posRaton[1] = 0;
 		
 		espacio = new char[fila][col];
 		for (int f = 0; f < fila; f++)
