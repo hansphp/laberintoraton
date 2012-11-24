@@ -81,6 +81,7 @@ public class Tablero {
 				espacio[f][c] = this.actual;
 				posRaton[0] = f;
 				posRaton[1] = c;
+				brain.inicia(f,c);
 				ratonEnTablero=true;
 			}else{
 				System.out.println("YA NO DIBUJA RATON");
@@ -123,7 +124,9 @@ public class Tablero {
 		repaint();
 	}
 	char casilla(int f, int c){
+		if(f>=0 && (f<fila && c<col) && c>=0)
 		return 	espacio[f][c];
+		return 'X';
 	}
 	
 	void reset(){

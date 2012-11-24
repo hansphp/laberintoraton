@@ -7,5 +7,5 @@ public class Principal {
 		new FrmTablero(tablero);
 		new BrainRaton(tablero);
 	}
-	
+
 }
