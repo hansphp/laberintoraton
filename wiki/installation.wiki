@@ -1,6 +1,6 @@
 #summary One-sentence summary of this page.
 
-= Introduction =
+= Instalación =
 
 Add your content here.
 
