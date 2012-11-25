@@ -10,10 +10,14 @@ Una vez descargado, lo descomprimimos tal cual en algún lugar de la computadora
 
 [http://laberintoraton.googlecode.com/svn/pics/escritorio_img.png]
 
-Después de esto, arrancamos *[http://www.eclipse.org/ Eclipse]* y una vez en el *Workbench* nos dirigimos a menú *File* > Importar...
-
+Después de esto, arrancamos *[http://www.eclipse.org/ Eclipse]* y una vez en el *Workbench* nos dirigimos a menú *File* > *Import*...
 
 [http://laberintoraton.googlecode.com/svn/pics/importar_img.png]
+
+Desde luego, aparecerá el asistente para importar el proyecto, para estó damos click en 
+
+
+[http://laberintoraton.googlecode.com/svn/pics/proyecto_existente_img.png]
 
 
 = Details =
