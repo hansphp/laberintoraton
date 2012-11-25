@@ -19,7 +19,7 @@ public class Sprite {
 		actual = "pared";
 		obj = este;
 		t = obj.t;
-		gX = (t.col * t.largo) + 20;
+		gX = (t.columna * t.largo) + 20;
 		validadorInicial(n);
 	}
 

@@ -1,6 +1,5 @@
 package laberintoraton;
 
-
 /**
  * 
  * Tablero logico, modela el tablero como una matriz de caracteres.
@@ -9,19 +8,14 @@ package laberintoraton;
 public class Tablero {
 
 	PanelTablero dibujo;
-	
+
 	BrainRaton brain;
 
 	char rellenos[] = { 'B', 'P', 'R', 'S', 'E' };
-	
-	int [] posRaton = new int[2];
-	int [] posPuerta = new int[2];
-	
-	boolean ratonEnTablero;
-	boolean puertaEnTablero;
 
-	int turno;
-	
+	Coordenada posRaton;
+	Coordenada posSalida;
+
 	/**
 	 * longitud de cada cuadro en el tablero
 	 */
@@ -29,7 +23,7 @@ public class Tablero {
 	/**
 	 * número total de renglones y columnas del tablero
 	 */
-	int fila, col;
+	int fila, columna;
 	/**
 	 * almacena qué valor tiene cada casilla:<br>
 	 * La casilla vacía o 'B' es blanca.
@@ -37,7 +31,7 @@ public class Tablero {
 	public char espacio[][];
 
 	char actual;
-	
+
 	/**
 	 * crea la matriz que representa el tablero, la rellena con las letras que
 	 * le corresponden a cada color de casilla y a cada jugador
@@ -49,22 +43,21 @@ public class Tablero {
 	 */
 	Tablero(int filas, int columnas) {
 		fila = filas;
-		col = columnas;
+		columna = columnas;
 		largo = 32;
 		actual = 'P';
-		ratonEnTablero = false;
-		puertaEnTablero = false;
-		
-		espacio = new char[fila][col];
+
+		espacio = new char[fila][columna];
 		for (int f = 0; f < fila; f++)
-			for (int c = 0; c < col; c++)
+			for (int c = 0; c < columna; c++)
 				espacio[f][c] = 'B'; // fija casillas de color blanco
-		System.out.println("Creando tablero desde el Constructor");
+		System.out.println("Creando tablero desde el Constructor.");
 	}
-	
-	void repaint(){
+
+	void repaint() {
 		dibujo.repaint();
 	}
+
 	/**
 	 * Efectúa el movimiento solicitado en el tablero
 	 * 
@@ -76,69 +69,66 @@ public class Tablero {
 	void pintar(int f, int c) {
 		System.out.println("===================================");
 		System.out.printf("dibujando: %c\n", this.actual);
-		if(this.actual=='R'){
-			if(ratonEnTablero==false && espacio[f][c]=='B'){
+		Coordenada coor = new Coordenada(f, c);
+
+		if (this.actual == 'R') {
+			if (posRaton == null && espacio[f][c] == 'B') {
 				espacio[f][c] = this.actual;
-				posRaton[0] = f;
-				posRaton[1] = c;
-				brain.inicia(f,c);
-				ratonEnTablero=true;
-			}else{
-				System.out.println("YA NO DIBUJA RATON");
+				posRaton = coor; // NEW | Paso de referencia.
+				brain.inicia(coor);
 			}
-		}else if(this.actual=='S'){
-			if(puertaEnTablero==false && espacio[f][c]=='B'){
+		} else if (this.actual == 'S') {
+			if (posSalida == null && espacio[f][c] == 'B') {
 				espacio[f][c] = this.actual;
-				posPuerta[0] = f;
-				posPuerta[1] = c;
-				puertaEnTablero=true;
-			}else{
-				System.out.println("YA NO DIBUJA SALIDA");
-			}	
-		}else{
-			if(posRaton[0] == f &&  c == posRaton[1]){
+				posSalida = coor; // NEW | Paso de referencia.
+			}
+		} else {
+			if (coor.igual(posRaton)) {
 				espacio[f][c] = this.actual;
-				ratonEnTablero = false;
-			}else if(posPuerta[0] == f &&  c == posPuerta[1]){
+				posRaton = null;
+			} else if (coor.igual(posSalida)) {
 				espacio[f][c] = this.actual;
-				puertaEnTablero = false;
-			}else
-			espacio[f][c] = this.actual;
-			System.out.println(this.actual);
+				posSalida = null;
+			} else {
+				espacio[f][c] = this.actual;
+			}
 		}
-		
-		/* for(char es[]:espacio){
-			for(char e:es){
-			System.out.print(" "+e);
-			}
-			System.out.println("");
-		}*/
-			
+
+		/*
+		 * for(char es[]:espacio){ for(char e:es){ System.out.print(" "+e); }
+		 * System.out.println(""); }
+		 */
+
 		repaint();
 	}
-	
+
 	void pintar(int f, int c, char n) {
 		System.out.println("===================================");
 		System.out.printf("dibujando: %c\n", n);
 		espacio[f][c] = n;
 		repaint();
 	}
-	char casilla(int f, int c){
-		if(f>=0 && (f<fila && c<col) && c>=0)
-		return 	espacio[f][c];
+
+	char casilla(int f, int c) {
+		if (f >= 0 && (f < fila && c < columna) && c >= 0)
+			return espacio[f][c];
 		return 'X';
 	}
-	
-	void reset(){
+
+	void reset() {
 		for (int f = 0; f < fila; f++)
-			for (int c = 0; c < col; c++)
+			for (int c = 0; c < columna; c++)
 				espacio[f][c] = 'B'; // fija casillas de color blanco.
+		actual = 'P';
+		Sprite.actual = "pared";
+		posRaton = null;
+		posSalida = null;
 	}
-	
+
 	/**
-	 * Crea un JPanel donde se dibujará el tablero. Se asocia el
-	 * PnlTablero con este objeto, de manera que cada movimiento efectuado por
-	 * medio de jugada(r,c) se vea reflejado gráficamente en el tablero de juego
+	 * Crea un JPanel donde se dibujará el tablero. Se asocia el PnlTablero con
+	 * este objeto, de manera que cada movimiento efectuado por medio de
+	 * jugada(r,c) se vea reflejado gráficamente en el tablero de juego
 	 * 
 	 * @return una referencia al panel de dibujo
 	 */

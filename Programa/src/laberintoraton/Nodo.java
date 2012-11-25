@@ -18,10 +18,7 @@ public class Nodo {
 
 	public String toString() {
 		String s;
-		s = "Coordenada: " + fila + "," + columna;
+		s = "(f,c): " + fila + "," + columna;
 		return s;
 	}
-	/*
-	 * boolean igual(String n) { return nombre.equals(n); }
-	 */
 }

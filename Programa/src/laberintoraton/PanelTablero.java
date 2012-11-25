@@ -46,7 +46,7 @@ class PanelTablero extends JPanel {
 				int y = e.getY();
 
 				if ((coor[0] >= 0 && coor[0] < t.fila)
-						&& (coor[1] >= 0 && coor[1] < t.col)) {
+						&& (coor[1] >= 0 && coor[1] < t.columna)) {
 					System.out.printf("[%2d,%2d]\n", x, y, coor[0], coor[1]);
 					t.pintar(coor[0], coor[1]);
 				} else {
@@ -57,17 +57,31 @@ class PanelTablero extends JPanel {
 						if (10 < y && y < (10 + 32)) {
 							Sprite.actual = "pared";
 							t.actual = 'P';
+							
+							if (t.posRaton != null)
+								t.espacio[t.posRaton.fila][t.posRaton.columna] = 'B';
+							t.posRaton = null;
+							
+							if (t.posSalida != null)
+								t.espacio[t.posSalida.fila][t.posSalida.columna] = 'B';
+							t.posSalida = null;
+							
+							
 						}
 						if (48 < y && y < (48 + 32)) {
 							Sprite.actual = "raton";
 							t.actual = 'R';
-							t.espacio[t.posRaton[0]][t.posRaton[1]]='B';
-							t.ratonEnTablero=false;
-							//// CONSTRUIR DESTRUCTOR PARA RESETEAR LA RUTA.
+							if (t.posRaton != null)
+								t.espacio[t.posRaton.fila][t.posRaton.columna] = 'B';
+							t.posRaton = null;
+							// // CONSTRUIR DESTRUCTOR PARA RESETEAR LA RUTA.
 						}
 						if (86 < y && y < (86 + 32)) {
 							Sprite.actual = "salida";
 							t.actual = 'S';
+							if (t.posSalida != null)
+								t.espacio[t.posSalida.fila][t.posSalida.columna] = 'B';
+							t.posSalida = null;
 						}
 						if (124 < y && y < (124 + 32)) {
 							Sprite.actual = "goma";
@@ -102,7 +116,7 @@ class PanelTablero extends JPanel {
 
 			@Override
 			public void mouseWheelMoved(MouseWheelEvent e) {
-				if (t.puertaEnTablero && t.ratonEnTablero) {
+				if (t.posRaton != null && t.posSalida != null) {
 					t.brain.accion(e.getWheelRotation());
 				}
 			}
@@ -114,7 +128,7 @@ class PanelTablero extends JPanel {
 			public void mouseDragged(MouseEvent e) {
 				int coor[] = coordenadas(e);
 				if ((coor[0] >= 0 && coor[0] < t.fila)
-						&& (coor[1] >= 0 && coor[1] < t.col)) {
+						&& (coor[1] >= 0 && coor[1] < t.columna)) {
 					System.out.printf("coor[%2d,%2d]\n", coor[0], coor[1]);
 					t.pintar(coor[0], coor[1]);
 				}
@@ -144,7 +158,7 @@ class PanelTablero extends JPanel {
 		int y = 10;
 		for (int f = 0; f < t.fila; f++) {
 			int x = 10;
-			for (int c = 0; c < t.col; c++) {
+			for (int c = 0; c < t.columna; c++) {
 
 				g.setColor(Color.LIGHT_GRAY);
 				g.drawRect(x, y, t.largo, t.largo);
