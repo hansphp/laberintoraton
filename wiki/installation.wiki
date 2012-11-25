@@ -14,10 +14,14 @@ Después de esto, arrancamos *[http://www.eclipse.org/ Eclipse]* y una vez en el
 
 [http://laberintoraton.googlecode.com/svn/pics/importar_img.png]
 
-Desde luego, aparecerá el asistente para importar el proyecto, para estó damos click en 
-
+Desde luego, aparecerá el asistente para importar el proyecto, para estó damos click en *Existing Projects into Workspace*.
 
 [http://laberintoraton.googlecode.com/svn/pics/proyecto_existente_img.png]
+
+Ahora nos solicitará la ubicación del archivo la cual la introducimos de la siguiente manera:
+
+
+[http://laberintoraton.googlecode.com/svn/pics/buscar_archivo_img.png]
 
 
 = Details =
