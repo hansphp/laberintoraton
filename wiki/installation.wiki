@@ -26,13 +26,12 @@ Siendo ya instanciado en el Workspace el proyecto, vamos a ejecutarlo, dando cli
 
 [http://laberintoraton.googlecode.com/svn/pics/como_app_java_img.png]
 
-Para finalmente tener el tablero inicializado en 10*15:
-
+Para finalmente tener el tablero inicializado en *10`*`15*:
 
 [http://laberintoraton.googlecode.com/svn/pics/prinicipal_img.png]
 
-
-
+[http://laberintoraton.googlecode.com/svn/pics/tablero_blanco_img.png
+]
 
 = Details =
 
