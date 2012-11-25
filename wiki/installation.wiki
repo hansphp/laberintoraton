@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#summary Installation Guide.
 
 = Instalación =
 
@@ -19,7 +19,6 @@ Desde luego, aparecerá el asistente para importar el proyecto, para estó damos
 [http://laberintoraton.googlecode.com/svn/pics/proyecto_existente_img.png]
 
 Ahora nos solicitará la ubicación del archivo la cual la introducimos de la siguiente manera:
-
 
 [http://laberintoraton.googlecode.com/svn/pics/buscar_archivo_img.png]
 
