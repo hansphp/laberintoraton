@@ -1,6 +1,6 @@
 #summary Installation Guide.
 
-= Instalación =
+= Guía de Instalación =
 
 Primero, tenemos que descargar los archivos necesarios, para esto nos dirigimos a *Downloads* de este mismo _website._
 
@@ -18,9 +18,20 @@ Desde luego, aparecerá el asistente para importar el proyecto, para estó damos
 
 [http://laberintoraton.googlecode.com/svn/pics/proyecto_existente_img.png]
 
-Ahora nos solicitará la ubicación del archivo la cual la introducimos de la siguiente manera:
+Ahora nos solicitará la ubicación del archivo la cual la introducimos de la siguiente manera, seguido de *Next* y *Finish*:
 
 [http://laberintoraton.googlecode.com/svn/pics/buscar_archivo_img.png]
+
+Siendo ya instanciado en el Workspace el proyecto, vamos a ejecutarlo, dando click derecho sobre la etiqueta del nombre del proyecto y selecionamos *Run As..* > *Java Application*:
+
+[http://laberintoraton.googlecode.com/svn/pics/como_app_java_img.png]
+
+Para finalmente tener el tablero inicializado en 10*15:
+
+
+[http://laberintoraton.googlecode.com/svn/pics/prinicipal_img.png]
+
+
 
 
 = Details =
