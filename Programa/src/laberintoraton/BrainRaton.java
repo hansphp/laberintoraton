@@ -5,9 +5,13 @@ public class BrainRaton {
 
 	Tablero t;
 	Pila ruta;
+	Lista listaNegra;
+	Coordenada inicio;
 
 	int fila;
 	int columna;
+
+	boolean fin;
 
 	// metodos
 
@@ -15,20 +19,45 @@ public class BrainRaton {
 		this.t = t;
 		t.brain = this;
 		ruta = new Pila();
+		listaNegra = new Lista();
 	}
 
-	void avance(int f, int c) {
+	void reset() {
+		ruta = new Pila();
+		listaNegra = new Lista();
+	}
+
+	void avance(Coordenada p) {
 		t.espacio[t.posRaton.fila][t.posRaton.columna] = 'B';
 
 		System.out.println("raton moviendose de " + (t.posRaton.fila) + ","
-				+ (t.posRaton.columna) + " a :" + f + "," + c);
+				+ (t.posRaton.columna) + " a :" + p.fila + "," + p.columna);
 
-		t.espacio[f][c] = 'R';
-		ruta.push(f, c);
-		t.posRaton = new Coordenada(f, c);
+		t.espacio[p.fila][p.columna] = 'R';
+		t.posRaton = p; // NEW : No es necesario recrear el objeto.
+		ruta.push(p);
 
 		ruta.recorrePila();
 		t.repaint();
+	}
+
+	void reversa() {
+
+		Nodo malo;
+		t.espacio[t.posRaton.fila][t.posRaton.columna] = 'B';
+
+		System.out.println("raton moviendose de " + (t.posRaton.fila) + ","
+				+ (t.posRaton.columna) + " a :" + ruta.tos().sig.fila + ","
+				+ ruta.tos().sig.columna);
+
+		t.espacio[ruta.tos().sig.fila][ruta.tos().sig.columna] = 'R';
+		t.posRaton = new Coordenada(ruta.tos().sig.fila, ruta.tos().sig.columna);
+
+		malo = ruta.pop();
+		listaNegra.agregaInicio(malo.fila, malo.columna);
+		listaNegra.recorreLista();
+		t.repaint();
+
 	}
 
 	void accion(int v) {
@@ -39,40 +68,80 @@ public class BrainRaton {
 	}
 
 	void inicia(Coordenada coor) {
+		fin = false;
+		reset();
 		ruta.push(coor.fila, coor.columna);
+		inicio = new Coordenada(coor.fila, coor.columna);
+
 	}
 
 	public boolean verifica(Direcciones dir) {
-		System.out.println(ruta.tos());
-		if (t.posRaton.getProximo(dir) == 'B') {
+		// System.out.println("pre TOS:"+ruta.tos().sig);
+		// if(ruta==null) inicia(inicio);
+		if (t.posRaton.valueProximo(dir) == 'S') {
+			fin = true;
 			return true;
+		} else if (t.posRaton.valueProximo(dir) == 'B'
+				&& !t.posRaton.getProximo(dir).igual(ruta.tos().sig)) {
+			if (!ruta.buscarNodo(t.posRaton.getProximo(dir))) {
+				if (!listaNegra.buscarNodo(t.posRaton.getProximo(dir).fila,
+						t.posRaton.getProximo(dir).columna)) {
+					return true;
+				}
+				return false;
+			} else
+				return false;
 		} else
 			return false;
 	}
 
 	public void avanza(Direcciones dir) { // // Direcciones:
 		if (dir == Direcciones.ABAJO) {
-			avance(fila + 1, columna);
+			avance(t.posRaton.getProximo(dir));
 		} else if (dir == Direcciones.DERECHA) {
-			avance(t.posRaton.fila, t.posRaton.columna + 1);
+			avance(t.posRaton.getProximo(dir));
 		} else if (dir == Direcciones.IZQUIERDA) {
-			avance(t.posRaton.fila, t.posRaton.columna - 1);
+			avance(t.posRaton.getProximo(dir));
 		} else if (dir == Direcciones.ARRIBA) {
-			avance(t.posRaton.fila - 1, t.posRaton.columna);
+			avance(t.posRaton.getProximo(dir));
 		}
 	}
 
 	public void jugando() {
-		if (verifica(Direcciones.ABAJO)) {
-			avanza(Direcciones.ABAJO);
-		} else if (verifica(Direcciones.DERECHA)) {
-			avanza(Direcciones.DERECHA);
-		} else if (verifica(Direcciones.ARRIBA)) {
-			avanza(Direcciones.ARRIBA);
-		} else if (verifica(Direcciones.IZQUIERDA)) {
-			avanza(Direcciones.IZQUIERDA);
-		}
+		System.out.println("JUGADA:");
+		if (!fin) {
+			if (verifica(Direcciones.ABAJO)) {
+				avanza(Direcciones.ABAJO);
+			} else if (verifica(Direcciones.DERECHA)) {
+				avanza(Direcciones.DERECHA);
+			} else if (verifica(Direcciones.ARRIBA)) {
+				avanza(Direcciones.ARRIBA);
+			} else if (verifica(Direcciones.IZQUIERDA)) {
+				avanza(Direcciones.IZQUIERDA);
+			} else {
+				System.out.println("DES HACER JUGADA.:" + ruta.tos());
+				if (ruta.tos().sig != null)
+					reversa();
+				else {
+					t.espacio[ruta.tos().fila][ruta.tos().columna] = 'F';
+					t.repaint();
+					System.out.println("NO HAY MAS CAMINO");
 
+					for (char es[] : t.espacio) {
+						for (char e : es) {
+							System.out.print(" " + e);
+						}
+						System.out.println("");
+					}
+				}
+
+			}
+
+		}else{
+			t.espacio[ruta.tos().fila][ruta.tos().columna] = 'E';
+			t.repaint();
+			System.out.println("SALIDA ENCONTRADA");
+		}
 	}
 
 }

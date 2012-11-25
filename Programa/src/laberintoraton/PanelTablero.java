@@ -17,7 +17,7 @@ class PanelTablero extends JPanel {
 
 	Tablero t;
 
-	Sprite goma, raton, salida, pared, reset;
+	Sprite goma, raton, salida, pared, reset, fail, estrella;
 
 	public PanelTablero(Tablero t) {
 		this.t = t;
@@ -27,7 +27,8 @@ class PanelTablero extends JPanel {
 		goma = new Sprite("goma");
 		raton = new Sprite("raton");
 		reset = new Sprite("reset");
-
+		fail = new Sprite("fail");
+		estrella = new Sprite("estrella");
 	}
 
 	private void initComponents() {
@@ -57,16 +58,15 @@ class PanelTablero extends JPanel {
 						if (10 < y && y < (10 + 32)) {
 							Sprite.actual = "pared";
 							t.actual = 'P';
-							
+
 							if (t.posRaton != null)
 								t.espacio[t.posRaton.fila][t.posRaton.columna] = 'B';
 							t.posRaton = null;
-							
+
 							if (t.posSalida != null)
 								t.espacio[t.posSalida.fila][t.posSalida.columna] = 'B';
 							t.posSalida = null;
-							
-							
+
 						}
 						if (48 < y && y < (48 + 32)) {
 							Sprite.actual = "raton";
@@ -74,6 +74,7 @@ class PanelTablero extends JPanel {
 							if (t.posRaton != null)
 								t.espacio[t.posRaton.fila][t.posRaton.columna] = 'B';
 							t.posRaton = null;
+
 							// // CONSTRUIR DESTRUCTOR PARA RESETEAR LA RUTA.
 						}
 						if (86 < y && y < (86 + 32)) {
@@ -169,6 +170,10 @@ class PanelTablero extends JPanel {
 					raton.dibujar(g, x + 1, y + 1);
 				} else if (t.casilla(f, c) == 'S') {
 					salida.dibujar(g, x + 1, y + 1);
+				} else if (t.casilla(f, c) == 'F') {
+					fail.dibujar(g, x + 1, y + 1);
+				} else if (t.casilla(f, c) == 'E') {
+					estrella.dibujar(g, x + 1, y + 1);
 				} else {
 					g.setColor(Color.WHITE);
 					g.fillRect(x + 1, y + 1, t.largo - 1, t.largo - 1);

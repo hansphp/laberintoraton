@@ -29,7 +29,7 @@ public class Sprite {
 
 	private boolean validadorInicial(String n) {
 		if ("raton" == n || "salida" == n || "pared" == n || "goma" == n
-				|| "reset" == n) {
+				|| "reset" == n || "fail" == n || "estrella" == n) {
 			pic = Toolkit.getDefaultToolkit().getImage(n + ".png");
 			nombre = n;
 			return true;
