@@ -2,8 +2,9 @@
 
 = Instalación =
 
-Add your content here.
+Primero, tenemos que descargar los archivos necesarios, para esto nos dirigimos a *Downloads* de este mismo _web site_
 
+[descarga_img.png]
 
 = Details =
 
