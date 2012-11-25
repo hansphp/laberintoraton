@@ -35,9 +35,8 @@ Para finalmente tener el tablero inicializado en *10`*`15*:
 =Manual de Usuario=
 
 Una vez ejecutado el programa, vamos a dibujar el tablero, procurando este orden:
-Pared
-Salida
-Ratón
+
+*Pared, Salida y Ratón*
 
 [http://laberintoraton.googlecode.com/svn/pics/tablero_img.png]
 
