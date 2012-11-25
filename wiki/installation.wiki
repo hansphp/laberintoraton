@@ -2,9 +2,18 @@
 
 = Instalación =
 
-Primero, tenemos que descargar los archivos necesarios, para esto nos dirigimos a *Downloads* de este mismo _website_
+Primero, tenemos que descargar los archivos necesarios, para esto nos dirigimos a *Downloads* de este mismo _website._
 
 [http://laberintoraton.googlecode.com/svn/pics/descarga_img.png]
+
+Una vez descargado, lo descomprimimos tal cual en algún lugar de la computadora, por ej. el *Escritorio*.
+
+[http://laberintoraton.googlecode.com/svn/pics/escritorio_img.png]
+
+Después de esto, arrancamos el *Eclipse* y una vez en el *Workbench* 
+
+WikiWordLink
+[http://domain/page label]
 
 = Details =
 
