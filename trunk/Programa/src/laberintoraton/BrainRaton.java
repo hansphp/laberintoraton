@@ -25,6 +25,7 @@ public class BrainRaton {
 	void reset() {
 		ruta = new Pila();
 		listaNegra = new Lista();
+		fin = false;
 	}
 
 	void avance(Coordenada p) {
@@ -36,8 +37,7 @@ public class BrainRaton {
 		t.espacio[p.fila][p.columna] = 'R';
 		t.posRaton = p; // NEW : No es necesario recrear el objeto.
 		ruta.push(p);
-
-		ruta.recorrePila();
+		//ruta.recorrePila();
 		t.repaint();
 	}
 
@@ -76,8 +76,6 @@ public class BrainRaton {
 	}
 
 	public boolean verifica(Direcciones dir) {
-		// System.out.println("pre TOS:"+ruta.tos().sig);
-		// if(ruta==null) inicia(inicio);
 		if (t.posRaton.valueProximo(dir) == 'S') {
 			fin = true;
 			return true;
@@ -141,6 +139,13 @@ public class BrainRaton {
 			t.espacio[ruta.tos().fila][ruta.tos().columna] = 'E';
 			t.repaint();
 			System.out.println("SALIDA ENCONTRADA");
+			
+			for (char es[] : t.espacio) {
+				for (char e : es) {
+					System.out.print(" " + e);
+				}
+				System.out.println("");
+			}
 		}
 	}
 
