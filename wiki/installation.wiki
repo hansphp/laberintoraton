@@ -10,10 +10,8 @@ Una vez descargado, lo descomprimimos tal cual en algún lugar de la computadora
 
 [http://laberintoraton.googlecode.com/svn/pics/escritorio_img.png]
 
-Después de esto, arrancamos el *Eclipse* y una vez en el *Workbench* 
+Después de esto, arrancamos el *[http://www.eclipse.org/ Eclipse]* y una vez en el *Workbench* 
 
-WikiWordLink
-[http://domain/page label]
 
 = Details =
 
