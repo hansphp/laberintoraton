@@ -32,3 +32,5 @@ Para finalmente tener el tablero inicializado en *10`*`15*:
 
 [http://laberintoraton.googlecode.com/svn/pics/tablero_blanco_img.png
 ]
+
+=Manual de Usuario=
