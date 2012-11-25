@@ -32,10 +32,3 @@ Para finalmente tener el tablero inicializado en *10`*`15*:
 
 [http://laberintoraton.googlecode.com/svn/pics/tablero_blanco_img.png
 ]
-
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
