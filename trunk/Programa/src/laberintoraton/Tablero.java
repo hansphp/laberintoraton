@@ -11,7 +11,7 @@ public class Tablero {
 
 	BrainRaton brain;
 
-	char rellenos[] = { 'B', 'P', 'R', 'S', 'E' };
+	char rellenos[] = { 'B', 'P', 'R', 'S', 'E', 'F' };
 
 	Coordenada posRaton;
 	Coordenada posSalida;
@@ -95,10 +95,10 @@ public class Tablero {
 		}
 
 		/*
-		 * for(char es[]:espacio){ for(char e:es){ System.out.print(" "+e); }
-		 * System.out.println(""); }
-		 */
-
+		  for(char es[]:espacio){ for(char e:es){ System.out.print(" "+e); }
+		  System.out.println(""); }
+		 
+*/
 		repaint();
 	}
 

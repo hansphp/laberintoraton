@@ -79,14 +79,23 @@ public class Lista {
 			p = p.sig;
 		}
 	}
-	/*
-	 * void buscarContacto(String nombre){ Nodo p; int i=0;
-	 * 
-	 * if(head == null){ System.out.println("Lista vacia"); return; } p = head;
-	 * while(p!=null){ if(p.nombre.equalsIgnoreCase(nombre)){ i++;
-	 * System.out.println("Resultado de busqueda: "+p.nombre+":"+p.correo); }
-	 * p=p.sig; } if(i==0) System.out.println("Busqueda sin resultados");
-	 * 
-	 * }
-	 */
+
+	boolean buscarNodo(int f, int c) {
+		Nodo p;
+
+		if (head == null) {
+			System.out.println("Lista vacia");
+			return false;
+		}
+		p = head;
+		while (p != null) {
+			if (p.fila==f && c== p.columna) {
+				return true;
+			}
+			p = p.sig;
+		}
+		return false;
+
+	}
+
 }

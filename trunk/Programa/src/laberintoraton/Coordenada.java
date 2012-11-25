@@ -23,7 +23,7 @@ public class Coordenada extends Nodo {
 			return false;
 	}
 
-	public char getProximo(Direcciones dir) {
+	public char valueProximo(Direcciones dir) {
 		if (dir == Direcciones.ABAJO) {
 			return t.casilla(fila + 1, columna);
 		} else if (dir == Direcciones.DERECHA) {
@@ -34,5 +34,18 @@ public class Coordenada extends Nodo {
 			return t.casilla(fila - 1, columna);
 		} else
 			return 'X';
+	}
+
+	public Coordenada getProximo(Direcciones dir) {
+		if (dir == Direcciones.ABAJO) {
+			return new Coordenada(fila + 1, columna);
+		} else if (dir == Direcciones.DERECHA) {
+			return new Coordenada(fila, columna + 1);
+		} else if (dir == Direcciones.IZQUIERDA) {
+			return new Coordenada(fila, columna - 1);
+		} else if (dir == Direcciones.ARRIBA) {
+			return new Coordenada(fila - 1, columna);
+		} else
+			return null;
 	}
 }
