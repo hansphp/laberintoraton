@@ -2,9 +2,9 @@
 
 = Instalación =
 
-Primero, tenemos que descargar los archivos necesarios, para esto nos dirigimos a *Downloads* de este mismo _web site_
+Primero, tenemos que descargar los archivos necesarios, para esto nos dirigimos a *Downloads* de este mismo _website_
 
-[descarga_img.png]
+[http://laberintoraton.googlecode.com/svn/pics/descarga_img.png]
 
 = Details =
 
