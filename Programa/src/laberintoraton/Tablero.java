@@ -123,6 +123,7 @@ public class Tablero {
 		Sprite.actual = "pared";
 		posRaton = null;
 		posSalida = null;
+		brain.reset();
 	}
 
 	/**
